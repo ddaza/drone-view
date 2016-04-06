@@ -1,3 +1,4 @@
+'use strict';
 import gulp from 'gulp';
 import autoprefixer from 'autoprefixer';
 import browserify from 'browserify';
@@ -11,8 +12,9 @@ import rimraf from 'rimraf';
 import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
+import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
-import rename from 'gulp-rename';
+//import rename from 'gulp-rename';
 import nested from 'postcss-nested';
 import vars from 'postcss-simple-vars';
 import extend from 'postcss-simple-extend';
@@ -87,8 +89,9 @@ gulp.task('browserify', () => {
 
 gulp.task('styles', () => {
   gulp.src(paths.srcCss)
-  .pipe(rename({ extname: '.css' }))
+  //.pipe(rename({ extname: '.css' }))
   .pipe(sourcemaps.init())
+  .pipe(sass().on('error', sass.logError))
   .pipe(postcss([vars, extend, nested, autoprefixer, cssnano]))
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(paths.dist))

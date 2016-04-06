@@ -9,9 +9,9 @@ window.React = React;
 
 render(
   (<Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <Route path="/about" component={About} />
-      <Route path="/poweredby" component={PoweredBy} />
+    <Route path='/' component={App}>
+      <Route path='/about' component={About} />
+      <Route path='/poweredby' component={PoweredBy} />
     </Route>
   </Router>), document.getElementById('content')
 );
