@@ -39,12 +39,15 @@
   "homepage": "https://github.com/Granze/react-starterify",
   "dependencies": {
     "babel-eslint": "^6.0.2",
+    "classnames": "^2.2.3",
     "gulp-sass": "^2.2.0",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
+    "moment": "^2.12.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^2.0.0",
+    "react-tooltip": "^1.1.4",
     "superagent": "^1.8.3"
   },
   "devDependencies": {
