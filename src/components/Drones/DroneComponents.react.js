@@ -1,6 +1,9 @@
 'use strict';
 import React from 'react';
 import {List, Map} from 'immutable';
+import Tooltip from 'react-tooltip';
+import classnames from 'classnames';
+import _ from 'lodash';
 
 export class DroneBlock extends React.Component {
   render() {
@@ -29,13 +32,21 @@ DroneBlock.propTypes = {
 class Strike extends React.Component {
   render() {
     const {strike, key} = this.props;
-    const id = strike.get('id');
-    const deaths = strike.get('deaths_max');
-    const children = strike.get('children');
-
+    const id = strike.get('_id');
+    const deaths = _.toInteger(strike.get('deaths_max'));
+    const children = _.toInteger(strike.get('children'));
+    const narrative = strike.get('narrative');
+    const strikeClass = classnames(
+      'strike-ocurrence', {
+        children: children,
+        'double-digit': deaths > 9
+      });
     return (
       <div key={key} className='drone-strikes__strike'>
-        <span data-tip id={id}>.</span>
+        <a data-tip data-for={id} className={strikeClass}></a>
+        <Tooltip id={id}>
+          <p>{narrative}</p>
+        </Tooltip>
       </div>
     );
   }

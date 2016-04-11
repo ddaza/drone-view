@@ -27,8 +27,7 @@ export default class DroneStrikes extends React.Component {
     const drones = this.state.drones || new List();
     const filterType = {
       year: drones.groupBy(strike=>moment(strike.get('date')).year()),
-      country: drones.groupBy(strike=>strike.get('country')),
-      deaths_max: drones.groupBy(strike=>strike.get('deaths_max'))
+      country: drones.groupBy(strike=>strike.get('country'))
     };
     return filterType[filter] ? filterType[filter] : new List();
   }
@@ -38,9 +37,18 @@ export default class DroneStrikes extends React.Component {
     return this.getFilter(filter);
   }
 
+  onChange(e) {
+    const filter = e.target.selectedOptions[0].value;
+    this.setState({filter: filter});
+  }
+
   render() {
     return (
       <div className='drone-strikes__wrapper'>
+        <select onChange={this.onChange.bind(this)}>
+          <option value='year'>Year</option>
+          <option value='country'>Country</option>
+        </select>
         {this.getFilteredList().map((drones, title) => {
           return (
             <DroneBlock
@@ -53,4 +61,3 @@ export default class DroneStrikes extends React.Component {
     );
   }
 }
-
