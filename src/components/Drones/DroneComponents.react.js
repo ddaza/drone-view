@@ -24,7 +24,10 @@ export class DroneBlock extends React.Component {
 }
 
 DroneBlock.propTypes = {
-  title: React.PropTypes.string,
+  title: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
   key: React.PropTypes.string,
   drones: React.PropTypes.instanceOf(List)
 };
